@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Font Loading */
+@font-face {
+  font-family: 'ZZZ';
+  src: url('../assets/fonts/ZZZ.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+}
+
+/* Legacy font definitions (can be removed when using custom fonts) */
+.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}
+.tk-noto-sans-cjk-jp{font-family:"noto-sans-cjk-jp",sans-serif;}
+
+/* CSS Variables for Dynamic Theming */
+:root {
+  /* Light theme variables */
+  --zzz-bg: #efefef;
+  --zzz-white: #ffffff;
+  --zzz-black: #000000;
+
+  /* Grey scale */
+  --zzz-grey-1: #f8f9fa;
+  --zzz-grey-2: #f1f3f4;
+  --zzz-grey-3: #e8eaed;
+  --zzz-grey-4: #dadce0;
+  --zzz-grey-5: #bdc1c6;
+  --zzz-grey-6: #9aa0a6;
+  --zzz-grey-7: #5f6368;
+  --zzz-grey-8: #3c4043;
+  --zzz-grey-9: #202124;
+
+  /* Brand colors */
+  --zzz-primary: #4285f4;
+  --zzz-primary-light: #e8f0fe;
+  --zzz-yellow: #ffde00;
+  --zzz-green: #34a853;
+  --zzz-red: #ea4335;
+  --zzz-orange: #ff6d00;
+  --zzz-purple: #9c27b0;
+
+  /* Shadow colors */
+  --zzz-shadow: rgba(0, 0, 0, 0.1);
+  --zzz-shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme variables */
+html.dark {
+  --zzz-bg: #0f0f0f;
+  --zzz-white: #1a1a1a;
+  --zzz-black: #ffffff;
+
+  /* Grey scale - inverted for dark theme */
+  --zzz-grey-1: #202124;
+  --zzz-grey-2: #292a2d;
+  --zzz-grey-3: #35363a;
+  --zzz-grey-4: #5f6368;
+  --zzz-grey-5: #80868b;
+  --zzz-grey-6: #9aa0a6;
+  --zzz-grey-7: #bdc1c6;
+  --zzz-grey-8: #e8eaed;
+  --zzz-grey-9: #f8f9fa;
+
+  /* Brand colors - slightly adjusted for dark theme */
+  --zzz-primary: #8ab4f8;
+  --zzz-primary-light: #1a2332;
+  --zzz-yellow: #fdd663;
+  --zzz-green: #81c995;
+  --zzz-red: #f28b82;
+  --zzz-orange: #fcad70;
+  --zzz-purple: #c58af9;
+
+  /* Shadow colors */
+  --zzz-shadow: rgba(0, 0, 0, 0.3);
+  --zzz-shadow-hover: rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  html {
+    font-size: 14px;
+    word-spacing: 1px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    line-height: 1.4;
+  }
+
+  body {
+    @apply bg-zzz-bg text-zzz-grey-9 font-zzz;
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    line-height: 1.6;
+  }
+
+  /* ZZZ Scrollbar styling */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  /* ZZZ Card Components */
+  .zzz-card {
+    @apply bg-zzz-white rounded-zzz-4 shadow-zzz-card;
+    transition: all 0.3s ease;
+  }
+
+  .zzz-card:hover {
+    @apply shadow-zzz-card-hover;
+    transform: translateY(-2px);
+  }
+
+  .zzz-card-subtle {
+    @apply bg-zzz-grey-1 rounded-zzz-3;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* ZZZ Button Components */
+  .zzz-button-primary {
+    @apply px-6 py-3 bg-zzz-yellow text-zzz-black font-medium rounded-zzz-4 shadow-zzz-button;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px; /* Only buttons get moderate spacing */
+  }
+
+  .zzz-button-primary:hover {
+    @apply bg-zzz-yellow-hover shadow-zzz-button-hover;
+    transform: translateY(-1px);
+  }
+
+  .zzz-button-secondary {
+    @apply px-6 py-3 bg-zzz-white text-zzz-grey-8 border border-zzz-grey-4 rounded-zzz-4 shadow-zzz-button;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px; /* Only buttons get moderate spacing */
+  }
+
+  .zzz-button-secondary:hover {
+    @apply bg-zzz-grey-1 border-zzz-grey-5 shadow-zzz-button-hover;
+    transform: translateY(-1px);
+  }
+
+  .zzz-button-ghost {
+    @apply px-6 py-3 bg-transparent text-zzz-grey-7 hover:text-zzz-grey-8 hover:bg-zzz-grey-1 rounded-zzz-4;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px; /* Only buttons get moderate spacing */
+  }
+
+  /* ZZZ Input Components */
+  .zzz-input {
+    @apply w-full px-5 py-4 bg-zzz-white border border-zzz-grey-4 rounded-zzz-4 text-zzz-grey-8 placeholder-zzz-grey-6;
+    transition: all 0.2s ease;
+    font-size: 14px;
+  }
+
+  .zzz-input:focus {
+    @apply outline-none border-zzz-primary shadow-zzz-button;
+  }
+
+  /* ZZZ Text Styles - More targeted letter spacing */
+  .zzz-text-title {
+    @apply text-zzz-grey-9 font-medium;
+    letter-spacing: 1px; /* Titles get spacing for better readability */
+  }
+
+  .zzz-text-body {
+    @apply text-zzz-grey-8;
+    letter-spacing: 1px;
+  }
+
+  .zzz-text-secondary {
+    @apply text-zzz-grey-7;
+    /* No letter-spacing for secondary text */
+  }
+
+  .zzz-text-tertiary {
+    @apply text-zzz-grey-6;
+    /* No letter-spacing for tertiary text */
+  }
+
+  /* ZZZ Section Layout */
+  .zzz-section {
+    @apply py-12 px-6;
+  }
+
+  .zzz-container {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* ZZZ Accent Colors */
+  .zzz-accent-yellow {
+    @apply text-zzz-yellow;
+  }
+
+  .zzz-accent-primary {
+    @apply text-zzz-primary;
+  }
+
+  .zzz-accent-green {
+    @apply text-zzz-green;
+  }
+
+  /* ZZZ Grid System */
+  .zzz-grid {
+    @apply grid gap-6;
+  }
+
+  .zzz-grid-2 {
+    @apply grid-cols-1 md:grid-cols-2;
+  }
+
+  .zzz-grid-3 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .zzz-grid-4 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+  }
+
+  /* ZZZ Animations */
+  .zzz-fade-in {
+    @apply animate-fade-in;
+  }
+
+  .zzz-slide-up {
+    @apply animate-slide-up;
+  }
+
+  .zzz-scale-in {
+    @apply animate-scale-in;
+  }
+
+  /* ZZZ Utility Classes */
+  .zzz-hover-lift {
+    transition: transform 0.2s ease;
+  }
+
+  .zzz-hover-lift:hover {
+    transform: translateY(-2px);
+  }
+}
