@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8ab9cd68.css",
+    "main.js": "/static/js/main.fdc118af.js",
+    "static/media/ProfileEdited.png": "/static/media/ProfileEdited.63440e2b16918fc147f3.png",
+    "static/media/ZZZ.ttf": "/static/media/ZZZ.50a5fc40d2f0f75c8ff0.ttf",
+    "static/media/MUIC_Logo_Eng_Center_Black.png": "/static/media/MUIC_Logo_Eng_Center_Black.b30c4199c5dcef7ff69b.png",
+    "static/media/Logo_SCB_TechX.svg": "/static/media/Logo_SCB_TechX.85c61cb3269469dd07683ea8a6e90f43.svg",
+    "index.html": "/index.html",
+    "main.8ab9cd68.css.map": "/static/css/main.8ab9cd68.css.map",
+    "main.fdc118af.js.map": "/static/js/main.fdc118af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ab9cd68.css",
+    "static/js/main.fdc118af.js"
+  ]
+}
