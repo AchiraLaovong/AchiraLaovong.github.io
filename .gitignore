@@ -5,9 +5,6 @@ node_modules/
 /.pnp
 .pnp.js
 
-# IMPORTANT: /build directory is needed for GitHub Pages deployment
-# /build
-
 /dist
 
 .env

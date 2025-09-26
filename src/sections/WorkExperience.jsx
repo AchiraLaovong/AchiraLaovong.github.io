@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Calendar, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
 import scbTechXLogo from '../assets/images/Logo_SCB_TechX.svg';
-import muicLogo from '../assets/images/MUIC_Logo_Eng_Center_Black.png';
+import muicLogo from '../assets/images/Mahidol_U.png';
 
 const WorkExperience = () => {
   const experiences = [
@@ -91,11 +91,12 @@ const WorkExperience = () => {
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Company Logo */}
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-zzz-white rounded-lg p-2 border border-zzz-grey-2 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white rounded-lg p-2 border border-zzz-grey-2 flex items-center justify-center">
                       <img
                         src={experience.logo}
                         alt={`${experience.company} logo`}
                         className="w-full h-full object-contain"
+                        style={{ backgroundColor: 'white' }}
                       />
                     </div>
                   </div>

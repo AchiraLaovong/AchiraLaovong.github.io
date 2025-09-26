@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Star, Users, Zap } from 'lucide-react';
+import { ChevronDown, Star, Zap } from 'lucide-react';
 import profileImage from '../assets/images/ProfileEdited.png';
 
 const Hero = () => {
@@ -31,7 +31,7 @@ const Hero = () => {
                 className="inline-flex items-center gap-2 px-4 py-2 bg-zzz-white rounded-full shadow-zzz-card"
               >
                 <Star className="w-4 h-4 text-zzz-yellow" fill="currentColor" />
-                <span className="text-sm zzz-text-secondary">Data Scientist & ML Engineer</span>
+                <span className="text-sm zzz-text-secondary">Aspiring Data Scientist</span>
               </motion.div>
 
               <motion.h1
@@ -55,7 +55,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                Transforming data into actionable insights through machine learning and statistical analysis.
+                Mahidol University International College Graduate
               </motion.p>
             </div>
 
@@ -70,30 +70,9 @@ const Hero = () => {
                 View My Work
               </button>
 
-              <button className="zzz-button-secondary">
+              <a href="#contact" className="zzz-button-secondary">
                 Get In Touch
-              </button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              className="flex items-center gap-8 pt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-            >
-              <div className="text-center">
-                <div className="text-2xl font-bold zzz-text-title">10+</div>
-                <div className="text-sm zzz-text-tertiary">Projects</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold zzz-text-title">5+</div>
-                <div className="text-sm zzz-text-tertiary">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold zzz-text-title">100%</div>
-                <div className="text-sm zzz-text-tertiary">Success Rate</div>
-              </div>
+              </a>
             </motion.div>
           </motion.div>
 
@@ -121,7 +100,7 @@ const Hero = () => {
 
                   <div className="space-y-2">
                     <h3 className="text-xl font-semibold zzz-text-title">Portfolio Showcase</h3>
-                    <p className="zzz-text-secondary">Explore my latest data science projects</p>
+                    <p className="zzz-text-secondary">Explore all my projects!</p>
                   </div>
 
                   <div className="flex justify-center gap-2">
@@ -158,7 +137,7 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
+        transition={{ duration: 1 }}
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

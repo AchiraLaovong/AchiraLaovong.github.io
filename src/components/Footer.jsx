@@ -31,10 +31,9 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-xl font-bold text-zzz-white">Achira Laovong</h3>
-            <p className="text-zzz-grey-4 leading-relaxed">
-              Data Scientist & Machine Learning Engineer passionate about transforming
-              data into actionable insights.
+            <h3 className="text-2xl font-bold text-zzz-white">Achira Laovong</h3>
+            <p className="text-zzz-grey-4 leading-relaxed text-base">
+              Aspiring Data Scientist | Mahidol University International College Graduate
             </p>
 
             <div className="flex gap-3">
@@ -65,13 +64,13 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold text-zzz-white">Quick Links</h4>
-            <div className="space-y-2">
-              {['Home', 'About', 'Projects', 'Contact'].map((link) => (
+            <h4 className="text-xl font-semibold text-zzz-white">Quick Links</h4>
+            <div className="space-y-3">
+              {['Home', 'About', 'Education', 'Experience', 'Certificates', 'Projects', 'Contact'].map((link) => (
                 <a
                   key={link}
                   href={`#${link.toLowerCase()}`}
-                  className="block text-zzz-grey-4 hover:text-zzz-white transition-colors duration-200"
+                  className="block text-zzz-grey-4 hover:text-zzz-white transition-colors duration-200 text-base"
                 >
                   {link}
                 </a>
@@ -87,13 +86,12 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold text-zzz-white">Contact</h4>
-            <div className="space-y-2 text-zzz-grey-4">
-              <div>your.email@example.com</div>
-              <div>Available for projects</div>
+            <h4 className="text-xl font-semibold text-zzz-white">Contact</h4>
+            <div className="space-y-3 text-zzz-grey-4">
+              <div className="text-base">achiralaovong@gmail.com</div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-zzz-green rounded-full animate-pulse"></div>
-                <span className="text-zzz-green text-sm">Online</span>
+                <span className="text-zzz-green text-base">Online</span>
               </div>
             </div>
           </motion.div>

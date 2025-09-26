@@ -47,6 +47,12 @@
   --zzz-shadow-hover: rgba(0, 0, 0, 0.15);
 }
 
+/* Fix for navigation anchor links being cut off by fixed header */
+html {
+  scroll-padding-top: 80px; /* Adjust this value based on your header height */
+  scroll-behavior: smooth;
+}
+
 /* Dark theme variables */
 html.dark {
   --zzz-bg: #0f0f0f;

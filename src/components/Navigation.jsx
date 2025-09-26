@@ -11,7 +11,9 @@ const Navigation = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'Education', href: '#education' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Certificates', href: '#certificates' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' }
   ];
@@ -46,7 +48,7 @@ const Navigation = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -54,7 +56,7 @@ const Navigation = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="zzz-text-secondary hover:text-zzz-primary transition-colors duration-200 font-medium relative group"
+                className="zzz-text-secondary hover:text-zzz-primary transition-colors duration-200 font-medium relative group text-sm"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-zzz-primary group-hover:w-full transition-all duration-300"></span>
@@ -74,17 +76,17 @@ const Navigation = () => {
                 animate={{ rotate: isDark ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </motion.div>
             </motion.button>
 
-            <button className="zzz-button-primary">
+            <button className="zzz-button-primary text-sm px-4 py-2">
               Resume
             </button>
           </div>
 
           {/* Mobile Menu Button and Theme Toggle */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             {/* Mobile Theme Toggle */}
             <button
               onClick={toggleTheme}

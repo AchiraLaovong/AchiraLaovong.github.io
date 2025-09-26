@@ -14,11 +14,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run move-build",
+    "move-build": "rmdir /s /q docs 2>nul & move build docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d docs"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
