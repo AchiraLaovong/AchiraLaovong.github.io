@@ -4,13 +4,14 @@
   "private": true,
   "homepage": "https://achiralaovong.github.io/",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3",
-    "postcss": "^8.4.24",
     "autoprefixer": "^10.4.14",
     "framer-motion": "^6.3.5",
-    "lucide-react": "^0.292.0"
+    "lucide-react": "^0.292.0",
+    "postcss": "^8.4.24",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.3",
+    "tailwindcss": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

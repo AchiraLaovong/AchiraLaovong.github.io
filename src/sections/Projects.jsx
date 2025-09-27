@@ -1,124 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight, Folder, Calendar, CheckCircle, X, Code, Globe, Users, Clock, ZoomIn } from 'lucide-react';
-import kibanaViz from '../assets/images/kibana_viz.png';
-import dockerStructure from '../assets/images/structure.png';
+import { Github, ArrowRight, Folder, Calendar, CheckCircle, X, Code, Globe, Users, Clock, ZoomIn, BookOpen, FileText, Code2, MoreHorizontal } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { projects, getStatusColor, getPrimaryTag } from '../data/projectsData';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [zoomedImage, setZoomedImage] = useState(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Kafka-Driven Data Streaming Pipeline with Dashboard",
-      description: "Collaborated in a team to design and implement a comprehensive data streaming pipeline using Apache Kafka, processing anime data from multiple sources with real-time visualization through Kibana dashboards.",
-      showcaseImage: kibanaViz,
-      projectImages: [
-        {
-          src: kibanaViz,
-          alt: "Kibana Dashboard Visualization",
-          title: "Real-time Analytics Dashboard",
-          description: "Interactive Kibana dashboard showing anime trends, genre distributions, and real-time data insights from the streaming pipeline."
-        },
-        {
-          src: dockerStructure,
-          alt: "Docker Architecture Structure",
-          title: "Containerized System Architecture",
-          description: "Docker ecosystem architecture showing the interconnected containers: Zookeeper, Kafka-Broker, Elasticsearch, Kibana, and Kafka-Connect with persistent volumes."
-        }
-      ],
-      detailedDescription: [
-        "Challenge: Built a robust data streaming solution to process large volumes of anime data from MyAnimeList (MAL) API and Kaggle datasets, requiring real-time processing, data enrichment, and visualization capabilities. The challenge was to handle both batch and streaming data efficiently while ensuring data quality and exactly-once delivery semantics.",
-
-        "Architecture Design: Designed and deployed a containerized microservices ecosystem using Docker with 5 interconnected containers: Zookeeper (coordination), Kafka-Broker (message streaming), Elasticsearch (data storage), Kibana (visualization), and Kafka-Connect (data integration) with persistent volumes for data recovery.",
-
-        "Data Pipeline Implementation: Developed three different pipeline versions - evolved from traditional Producer-Consumer model to advanced KStream processing. The final version (CSVDataStream) processes anime data from Kaggle CSV files, enriches it with real-time MAL API calls, and filters explicit content using family-friendly filters.",
-
-        "Advanced Stream Processing: Implemented KStream processing with state stores for caching API responses to avoid redundant calls, configured transactional messaging for exactly-once delivery guarantees, and built intelligent data transformation logic that enriches anime records with additional metadata from external APIs.",
-
-        "Real-time Data Enrichment: Created CSVDataProducer.java to read anime IDs and titles from Kaggle dataset, then CSVKStreamProcessor.java enriches this data by making API calls to MyAnimeList for additional details like ratings, genres, and descriptions while filtering out explicit content for family-friendly recommendations.",
-
-        "Performance & Reliability Results: Achieved reliable real-time data processing with exactly-once delivery semantics, eliminated redundant API calls through intelligent state store caching, and successfully processed thousands of anime records with sub-second latency for real-time dashboard updates.",
-
-        "Visualization & Insights: Delivered comprehensive Kibana dashboards providing real-time insights into anime trends, genre distributions, and rating analytics. The system processes both historical batch data and live streaming updates seamlessly, enabling dynamic data exploration and monitoring.",
-
-        "Technical Innovation: Evolved through multiple architectural iterations - from simple throughput testing (Version 0) to traditional Producer-Consumer chains (Versions 1-2) to the final advanced KStream implementation, demonstrating progressive enhancement of streaming data processing capabilities."
-      ],
-      tags: ["Apache Kafka", "Kafka Streams", "Elasticsearch", "Kibana", "Docker", "Java", "Maven"],
-      status: "Completed",
-      date: "2024",
-      githubUrl: "https://github.com/maythaswang/streaming-data-pipeline",
-      teamProject: true,
-      duration: "1 month",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Predictive Maintenance System",
-      description: "Machine learning system for industrial equipment maintenance prediction using advanced analytics.",
-      detailedDescription: [
-        "Developed a comprehensive predictive maintenance solution for industrial equipment.",
-        "Implemented machine learning algorithms to predict equipment failures before they occur.",
-        "Built data pipelines to process sensor data and maintenance logs.",
-        "Created interactive dashboards for maintenance teams to monitor equipment health.",
-        "Achieved 85% accuracy in predicting equipment failures, reducing downtime by 40%."
-      ],
-      tags: ["Python", "Scikit-learn", "Docker", "AWS"],
-      status: "In Progress",
-      date: "2024",
-      githubUrl: "#",
-      teamProject: false,
-      duration: "4 months",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Financial Risk Assessment",
-      description: "AI-powered risk assessment tool for financial institutions using advanced machine learning.",
-      detailedDescription: [
-        "Built an AI-powered risk assessment platform for financial institutions.",
-        "Implemented advanced machine learning models to evaluate loan default risk.",
-        "Designed RESTful APIs for real-time risk scoring.",
-        "Created comprehensive reporting dashboards for risk analysts.",
-        "Integrated with existing banking systems through secure API connections."
-      ],
-      tags: ["Python", "XGBoost", "Flask", "MongoDB"],
-      status: "Completed",
-      date: "2023",
-      githubUrl: "#",
-      teamProject: false,
-      duration: "6 months",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Real-time Fraud Detection",
-      description: "Real-time fraud detection system using machine learning algorithms for financial transactions.",
-      detailedDescription: [
-        "Developed a real-time fraud detection system for financial transactions.",
-        "Implemented streaming data processing for instant transaction analysis.",
-        "Built machine learning models to identify fraudulent patterns.",
-        "Created alert systems for immediate fraud notification.",
-        "Achieved sub-second response times for fraud detection."
-      ],
-      tags: ["Python", "Kafka", "Redis", "FastAPI"],
-      status: "Completed",
-      date: "2023",
-      githubUrl: "#",
-      teamProject: true,
-      duration: "5 months",
-      featured: false
+  // Helper function to render mathematical expressions
+  const renderMathContent = (text) => {
+    if (text.startsWith('MATH_BLOCK: ')) {
+      const mathExpression = text.replace('MATH_BLOCK: ', '');
+      return (
+        <div className="math-block">
+          {mathExpression}
+        </div>
+      );
     }
-  ];
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Completed': return 'zzz-green';
-      case 'In Progress': return 'zzz-orange';
-      case 'Planning': return 'zzz-primary';
-      default: return 'zzz-grey-6';
-    }
+    return <p className="zzz-text-body leading-relaxed">{text}</p>;
   };
 
   const ProjectCard = ({ project, index }) => (
@@ -213,11 +113,15 @@ const Projects = () => {
             <a
               href={project.githubUrl}
               className="p-2 zzz-text-tertiary hover:text-zzz-primary transition-colors duration-200"
-              title="View Code"
+              title={project.githubUrl.includes('colab.research.google.com') ? "View Colab" : "View Code"}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github className="w-5 h-5" />
+              {project.githubUrl.includes('colab.research.google.com') ? (
+                <BookOpen className="w-5 h-5" />
+              ) : (
+                <Github className="w-5 h-5" />
+              )}
             </a>
           </div>
 
@@ -261,9 +165,59 @@ const Projects = () => {
 
           {/* Projects Grid - Single column layout */}
           <div className="space-y-6 mb-12">
-            {projects.map((project, index) => (
+            {projects.slice(0, 3).map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
+
+            {/* Liquid Glass UI for "More Projects" indicator */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="zzz-card p-8 text-center relative overflow-hidden">
+                {/* Liquid Glass Background Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-zzz-primary/10 via-transparent to-zzz-primary/5 backdrop-blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zzz-white/20 to-transparent animate-pulse"></div>
+
+                {/* Floating Dots Animation */}
+                <div className="relative flex items-center justify-center gap-2 mb-4">
+                  {[0, 1, 2].map((i) => (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        y: [0, -10, 0],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                        ease: "easeInOut"
+                      }}
+                      className="w-3 h-3 bg-zzz-primary rounded-full"
+                    />
+                  ))}
+                </div>
+
+                <h3 className="text-lg font-semibold zzz-text-title mb-2">
+                  And More Projects...
+                </h3>
+                <p className="zzz-text-secondary mb-4">
+                  Discover additional projects showcasing diverse technologies and methodologies
+                </p>
+
+                <Link
+                  to="/projects"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-zzz-primary/20 backdrop-blur-md text-zzz-primary font-medium rounded-lg border border-zzz-primary/30 hover:bg-zzz-primary hover:text-zzz-white transition-all duration-300 group"
+                >
+                  <span>Explore All Projects</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                </Link>
+              </div>
+            </motion.div>
           </div>
 
           {/* CTA Section */}
@@ -281,9 +235,9 @@ const Projects = () => {
               Let's discuss your next data science project and how I can help you achieve your goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="zzz-button-primary">
+              <Link to="/projects" className="zzz-button-primary">
                 View All Projects
-              </button>
+              </Link>
               <a href="#contact" className="zzz-button-secondary">
                 Get In Touch
               </a>
@@ -370,32 +324,56 @@ const Projects = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.1 }}
-                          className="flex items-start gap-3"
+                          className={detail.startsWith('MATH_BLOCK: ') ? "" : "flex items-start gap-3"}
                         >
-                          <div className="w-2 h-2 bg-zzz-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <p className="zzz-text-body leading-relaxed">{detail}</p>
+                          {!detail.startsWith('MATH_BLOCK: ') && (
+                            <div className="w-2 h-2 bg-zzz-primary rounded-full mt-2 flex-shrink-0"></div>
+                          )}
+                          {renderMathContent(detail)}
                         </motion.div>
                       ))}
                     </div>
                   </div>
 
                   {/* Technologies Used */}
-                  <div>
-                    <h3 className="text-lg font-semibold zzz-text-title mb-3">Technologies Used</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.tags.map((tag, index) => (
-                        <motion.span
-                          key={tag}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2, delay: index * 0.05 }}
-                          className="px-3 py-2 bg-zzz-primary-light text-zzz-primary rounded-full text-sm font-medium"
-                        >
-                          {tag}
-                        </motion.span>
-                      ))}
+                  {selectedProject.technologies && (
+                    <div>
+                      <h3 className="text-lg font-semibold zzz-text-title mb-3">Technologies Used</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.technologies.map((tech, index) => (
+                          <motion.span
+                            key={tech}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.2, delay: index * 0.05 }}
+                            className="px-3 py-2 bg-zzz-primary-light text-zzz-primary rounded-full text-sm font-medium"
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Tags */}
+                  {selectedProject.tags && (
+                    <div>
+                      <h3 className="text-lg font-semibold zzz-text-title mb-3">Tags</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.tags.map((tag, index) => (
+                          <motion.span
+                            key={tag}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.2, delay: index * 0.05 }}
+                            className="px-3 py-2 bg-zzz-grey-2 text-zzz-grey-8 rounded-full text-sm font-medium"
+                          >
+                            {tag}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Project Images - New Section */}
                   {selectedProject.projectImages && selectedProject.projectImages.length > 0 && (
@@ -436,8 +414,17 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 bg-zzz-grey-8 text-zzz-white rounded-lg hover:bg-zzz-grey-9 transition-colors duration-200"
                     >
-                      <Github className="w-4 h-4" />
-                      View Code
+                      {selectedProject.githubUrl.includes('colab.research.google.com') ? (
+                        <>
+                          <BookOpen className="w-4 h-4" />
+                          View Colab
+                        </>
+                      ) : (
+                        <>
+                          <Github className="w-4 h-4" />
+                          View Code
+                        </>
+                      )}
                     </a>
                   </div>
                 </div>

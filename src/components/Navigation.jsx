@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X, Moon, Sun, Download, Eye } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showResumeMenu, setShowResumeMenu] = useState(false);
   const { isDark, toggleTheme } = useTheme();
 
   const navItems = [
@@ -25,6 +26,21 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleResumePreview = () => {
+    window.open('/AchiraLaovong_Resume.pdf', '_blank');
+    setShowResumeMenu(false);
+  };
+
+  const handleResumeDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/AchiraLaovong_Resume.pdf';
+    link.download = 'AchiraLaovong_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setShowResumeMenu(false);
+  };
 
   return (
     <motion.nav
@@ -80,9 +96,53 @@ const Navigation = () => {
               </motion.div>
             </motion.button>
 
-            <button className="zzz-button-primary text-sm px-4 py-2">
-              Resume
-            </button>
+            {/* Resume Button with Dropdown */}
+            <div className="relative">
+              <motion.button
+                onClick={() => setShowResumeMenu(!showResumeMenu)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="zzz-button-primary text-sm px-4 py-2 flex items-center gap-2"
+              >
+                Resume
+                <motion.div
+                  animate={{ rotate: showResumeMenu ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </motion.div>
+              </motion.button>
+
+              {/* Resume Dropdown Menu */}
+              {showResumeMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute right-0 mt-2 w-48 bg-zzz-white border border-zzz-grey-3 rounded-lg shadow-lg z-50"
+                >
+                  <div className="py-2">
+                    <button
+                      onClick={handleResumePreview}
+                      className="w-full px-4 py-2 text-left text-sm zzz-text-body hover:bg-zzz-grey-1 flex items-center gap-2 transition-colors duration-200"
+                    >
+                      <Eye className="w-4 h-4" />
+                      Preview Resume
+                    </button>
+                    <button
+                      onClick={handleResumeDownload}
+                      className="w-full px-4 py-2 text-left text-sm zzz-text-body hover:bg-zzz-grey-1 flex items-center gap-2 transition-colors duration-200"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download Resume
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button and Theme Toggle */}
@@ -138,9 +198,23 @@ const Navigation = () => {
               </motion.a>
             ))}
 
-            <button className="zzz-button-primary w-full mt-4">
-              Resume
-            </button>
+            {/* Mobile Resume Buttons */}
+            <div className="space-y-2 mt-4">
+              <button
+                onClick={handleResumePreview}
+                className="zzz-button-secondary w-full flex items-center justify-center gap-2"
+              >
+                <Eye className="w-4 h-4" />
+                Preview Resume
+              </button>
+              <button
+                onClick={handleResumeDownload}
+                className="zzz-button-primary w-full flex items-center justify-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download Resume
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -1,15 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Target, Users, Database } from 'lucide-react';
+import { Users } from 'lucide-react';
 import profileImage from '../assets/images/ProfileEdited.png';
 
 const About = () => {
-  const achievements = [
-    { icon: <Award className="w-6 h-6" />, label: "Certified Data Scientist" },
-    { icon: <Target className="w-6 h-6" />, label: "ML Specialist" },
-    { icon: <Database className="w-6 h-6" />, label: "Big Data Expert" }
-  ];
-
   return (
     <section className="zzz-section bg-zzz-white">
       <div className="zzz-container">
@@ -32,7 +26,7 @@ const About = () => {
           </h2>
 
           <p className="text-xl zzz-text-secondary max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Mahidol University International College graduate with a passion for data science and solving real-world problems through data.
           </p>
         </motion.div>
 
@@ -49,48 +43,8 @@ const About = () => {
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold zzz-text-title">My Journey</h3>
               <p className="zzz-text-body leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris.
+                As a recent graduate from Mahidol University International College, I'm looking for opportunities where I can continue growing, contribute to meaningful projects, and work alongside people who share the same passion for data science.
               </p>
-              <p className="zzz-text-body leading-relaxed">
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-              </p>
-            </div>
-
-            {/* Achievements */}
-            <div className="space-y-4">
-              <h4 className="text-lg font-semibold zzz-text-title">Achievements</h4>
-              <div className="space-y-3">
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={achievement.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="p-2 bg-zzz-grey-1 rounded-lg text-zzz-primary">
-                      {achievement.icon}
-                    </div>
-                    <span className="zzz-text-body">{achievement.label}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="space-y-4">
-              <h4 className="text-lg font-semibold zzz-text-title">Technologies</h4>
-              <div className="flex flex-wrap gap-2">
-                {['Python', 'R', 'SQL', 'TensorFlow', 'PyTorch', 'AWS', 'Docker'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-zzz-grey-1 text-zzz-grey-8 rounded-full text-sm">
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
           </motion.div>
 
@@ -112,7 +66,22 @@ const About = () => {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-zzz-primary/10 to-transparent"></div>
               </div>
               <h3 className="text-xl font-semibold zzz-text-title mb-2">Achira Laovong</h3>
-              <p className="zzz-text-secondary mb-4">Aspiring Data Scientist</p>
+
+              {/* Personal Info */}
+              <div className="space-y-3 mt-6">
+                <div className="flex justify-between items-center py-2 border-b border-zzz-grey-3">
+                  <span className="zzz-text-secondary text-sm">Education</span>
+                  <span className="zzz-text-title font-medium">Mahidol University International College</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-zzz-grey-3">
+                  <span className="zzz-text-secondary text-sm">Interests</span>
+                  <span className="zzz-text-title font-medium">Data Science</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="zzz-text-secondary text-sm">Location</span>
+                  <span className="zzz-text-title font-medium">Thailand</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

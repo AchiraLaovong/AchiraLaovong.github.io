@@ -1,23 +1,31 @@
 {
   "files": {
-    "main.css": "/static/css/main.5ac7d3f3.css",
-    "main.js": "/static/js/main.cbf7771b.js",
+    "main.css": "/static/css/main.eb197b4a.css",
+    "main.js": "/static/js/main.ec87456e.js",
     "static/media/ProfileEdited.png": "/static/media/ProfileEdited.63440e2b16918fc147f3.png",
+    "static/media/double_pendulum_animation.gif": "/static/media/double_pendulum_animation.27b4aebee74d09007990.gif",
     "static/media/ZZZ.ttf": "/static/media/ZZZ.50a5fc40d2f0f75c8ff0.ttf",
+    "static/media/original.png": "/static/media/original.e557dabdcf1974ff7515.png",
+    "static/media/sr_image_46.png": "/static/media/sr_image_46.033a3a1e7e0a45efbc2f.png",
     "static/media/Certificate_Achira Laovong_page-0001.jpg": "/static/media/Certificate_Achira Laovong_page-0001.53f74df6f94dddd82e46.jpg",
+    "static/media/bi_example.png": "/static/media/bi_example.29ad7da8faf657cb481e.png",
     "static/media/kibana_viz.png": "/static/media/kibana_viz.f9fb57d823a568b4c2ea.png",
     "static/media/structure.png": "/static/media/structure.23f016902279ea217f8d.png",
     "static/media/Machine_Learning_Certificate.png": "/static/media/Machine_Learning_Certificate.9ba62fd10f91d0a1d43b.png",
+    "static/media/heatmap.png": "/static/media/heatmap.a459ee1315512b9c89fe.png",
     "static/media/Mahidol_U.png": "/static/media/Mahidol_U.66cc8c44b56f1e4940a9.png",
     "static/media/bys.webp": "/static/media/bys.3c7a245072024042350c.webp",
+    "static/media/season_decom.png": "/static/media/season_decom.a69a135db224056bc8c2.png",
+    "static/media/avg_month.png": "/static/media/avg_month.1fcf903662c899ec9e8a.png",
     "static/media/stw.jpg": "/static/media/stw.f9cf8a45abad791f87fa.jpg",
+    "static/media/wave_function.png": "/static/media/wave_function.b3d236f49ea3f02b2c7a.png",
     "static/media/Logo_SCB_TechX.svg": "/static/media/Logo_SCB_TechX.85c61cb3269469dd07683ea8a6e90f43.svg",
     "index.html": "/index.html",
-    "main.5ac7d3f3.css.map": "/static/css/main.5ac7d3f3.css.map",
-    "main.cbf7771b.js.map": "/static/js/main.cbf7771b.js.map"
+    "main.eb197b4a.css.map": "/static/css/main.eb197b4a.css.map",
+    "main.ec87456e.js.map": "/static/js/main.ec87456e.js.map"
   },
   "entrypoints": [
-    "static/css/main.5ac7d3f3.css",
-    "static/js/main.cbf7771b.js"
+    "static/css/main.eb197b4a.css",
+    "static/js/main.ec87456e.js"
   ]
 }

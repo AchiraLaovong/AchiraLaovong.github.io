@@ -1,8 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Github, Linkedin, Send, MessageSquare, ArrowRight } from 'lucide-react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(formData.subject || 'Job Inquiry');
+      const body = encodeURIComponent(
+        `Hi Achira,\n\n${formData.message}\n\nBest regards,\n${formData.firstName} ${formData.lastName}\n\nContact: ${formData.email}`
+      );
+      const mailtoLink = `mailto:achiralaovong@gmail.com?subject=${subject}&body=${body}`;
+
+      // Open email client
+      window.location.href = mailtoLink;
+
+      setSubmitStatus('success');
+      // Reset form after successful submission
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
@@ -40,7 +90,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="zzz-section bg-zzz-white">
+    <section className="zzz-section bg-zzz-white" id="contact">
       <div className="zzz-container">
         {/* Section Header */}
         <motion.div
@@ -56,11 +106,11 @@ const Contact = () => {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold zzz-text-title mb-4">
-            Let's <span className="zzz-accent-primary">Connect</span>
+            Let's Work <span className="zzz-accent-primary">Together</span>
           </h2>
 
           <p className="text-xl zzz-text-secondary max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Looking to hire a data scientist? I'm actively seeking new opportunities where I can apply my skills in machine learning, data analysis, and building data-driven solutions.
           </p>
         </motion.div>
 
@@ -75,7 +125,19 @@ const Contact = () => {
           >
             <h3 className="text-2xl font-semibold zzz-text-title mb-6">Send a Message</h3>
 
-            <form className="space-y-6">
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-zzz-green bg-opacity-10 border border-zzz-green text-zzz-green rounded-lg">
+                Message sent successfully! Your email client should have opened with the message.
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-zzz-red bg-opacity-10 border border-zzz-red text-zzz-red rounded-lg">
+                There was an error sending your message. Please try again or contact me directly.
+              </div>
+            )}
+
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="zzz-grid zzz-grid-2">
                 <div>
                   <label className="block text-sm font-medium zzz-text-secondary mb-2">
@@ -83,8 +145,12 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
                     className="zzz-input"
-                    placeholder="John"
+                    placeholder="Your first name"
+                    required
                   />
                 </div>
                 <div>
@@ -93,8 +159,12 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
                     className="zzz-input"
-                    placeholder="Doe"
+                    placeholder="Your last name"
+                    required
                   />
                 </div>
               </div>
@@ -105,8 +175,12 @@ const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="zzz-input"
-                  placeholder="john@example.com"
+                  placeholder="your.email@company.com"
+                  required
                 />
               </div>
 
@@ -116,8 +190,11 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   className="zzz-input"
-                  placeholder="Project inquiry"
+                  placeholder="Job Opportunity / Interview Request / Team Opening"
                 />
               </div>
 
@@ -127,13 +204,21 @@ const Contact = () => {
                 </label>
                 <textarea
                   rows={5}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="zzz-input resize-none"
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about the role, your team, and what you're looking for. I'd love to learn more about the opportunity..."
+                  required
                 ></textarea>
               </div>
 
-              <button type="submit" className="zzz-button-primary w-full flex items-center justify-center gap-2">
-                Send Message
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="zzz-button-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send className="w-4 h-4" />
               </button>
             </form>
@@ -149,10 +234,9 @@ const Contact = () => {
           >
             {/* Contact Info */}
             <div>
-              <h3 className="text-2xl font-semibold zzz-text-title mb-6">Get in Touch</h3>
+              <h3 className="text-2xl font-semibold zzz-text-title mb-6">Ready to Hire</h3>
               <p className="zzz-text-body leading-relaxed mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua.
+                I'm currently seeking full-time opportunities in data science, machine learning, or analytics roles. Whether you have an opening for a junior data scientist, need someone for a specific project, or want to discuss potential fit for your team, I'd be excited to hear from you.
               </p>
 
               <div className="space-y-4">
@@ -208,16 +292,16 @@ const Contact = () => {
             </div>
 
             {/* Quick Contact CTA */}
-            <div className="zzz-card p-6 text-center bg-zzz-primary-light bg-zzz-grey-1">
+            <div className="zzz-card p-6 text-center bg-zzz-grey-1">
               <h4 className="text-lg font-semibold zzz-text-title mb-2">
-                Quick Response Guaranteed
+                Available for Hire
               </h4>
               <p className="zzz-text-secondary text-sm mb-4">
-                I typically respond to messages within 24 hours
+                Currently looking for my next opportunity. I respond to all hiring inquiries within 24 hours and am available for interviews.
               </p>
               <div className="flex justify-center gap-2">
                 <div className="w-2 h-2 bg-zzz-green rounded-full animate-pulse"></div>
-                <span className="text-sm text-zzz-green font-medium">Available for projects</span>
+                <span className="text-sm text-zzz-green font-medium">Actively job searching</span>
               </div>
             </div>
           </motion.div>

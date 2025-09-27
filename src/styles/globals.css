@@ -34,8 +34,8 @@
   --zzz-grey-9: #202124;
 
   /* Brand colors */
-  --zzz-primary: #4285f4;
-  --zzz-primary-light: #e8f0fe;
+  --zzz-primary: #585691;
+  --zzz-primary-light: #e8e7f3;
   --zzz-yellow: #ffde00;
   --zzz-green: #34a853;
   --zzz-red: #ea4335;
@@ -71,9 +71,9 @@ html.dark {
   --zzz-grey-9: #f8f9fa;
 
   /* Brand colors - slightly adjusted for dark theme */
-  --zzz-primary: #8ab4f8;
-  --zzz-primary-light: #1a2332;
-  --zzz-yellow: #fdd663;
+  --zzz-primary: #9695c7;
+  --zzz-primary-light: #2a2937;
+  --zzz-yellow: #e99135;
   --zzz-green: #81c995;
   --zzz-red: #f28b82;
   --zzz-orange: #fcad70;
@@ -254,5 +254,42 @@ html.dark {
 
   .zzz-hover-lift:hover {
     transform: translateY(-2px);
+  }
+
+  /* Mathematical expressions styling */
+  .math-latex {
+    font-family: 'Times New Roman', 'Computer Modern', serif;
+    font-style: italic;
+    color: var(--zzz-grey-9);
+    font-weight: 500;
+    padding: 0 2px;
+  }
+
+  .math-block {
+    font-family: 'Times New Roman', 'Computer Modern', serif;
+    background: var(--zzz-grey-2);
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-left: 4px solid var(--zzz-primary);
+    border-radius: 6px;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: 500;
+    color: var(--zzz-grey-9);
+    box-shadow: var(--zzz-shadow);
+    display: block;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  /* Dark theme specific adjustments for math blocks */
+  html.dark .math-block {
+    background: var(--zzz-grey-2);
+    border-left-color: var(--zzz-primary);
+    box-shadow: var(--zzz-shadow);
+  }
+
+  html.dark .math-latex {
+    color: var(--zzz-grey-9);
   }
 }
